@@ -11,10 +11,12 @@ repository = "https://github.com/rust-lang/libtest"
 readme = "README.md"
 
 [dependencies]
-getopts = "0.2"
-termcolor = "1.0"
-libc = "0.2"
+termcolor = { version = "1.0", git = "https://github.com/crlf0710/termcolor"}
+getopts = { version = "0.2", git = "https://github.com/crlf0710/getopts"}
+libc = { version = "0.2", git = "https://github.com/crlf0710/libc", default-features = false}
+std = { version = "1.0.0", optional = true, package = 'rustc-test-workspace-std' }
 
 [features]
-default = []
+default = ['libc/std']
 unstable = []
+rustc-dep-of-test = ['termcolor/rustc-dep-of-test', 'getopts/rustc-dep-of-test', 'libc/rustc-dep-of-test', 'std']
